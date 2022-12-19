@@ -1,0 +1,20 @@
+version: '2'
+services:
+    changedetection:
+      image: ghcr.io/dgtlmoon/changedetection.io
+      container_name: changedetection
+      hostname: changedetection
+      volumes:
+        - changedetection-data:/datastore
+      ports:
+        - 5000:5000
+      restart: unless-stopped
+
+    browser-chrome:
+        hostname: browser-chrome
+        image: seleniarm/standalone-chromium:4.0.0-20211213
+        volumes:
+            - /dev/shm:/dev/shm
+        restart: unless-stopped
+volumes:
+  changedetection-data:
